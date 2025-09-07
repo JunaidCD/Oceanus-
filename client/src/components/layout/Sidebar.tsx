@@ -43,15 +43,17 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside 
       className={cn(
-        "w-80 bg-card border-r border-border flex-shrink-0 transition-transform duration-300 ease-in-out lg:translate-x-0",
+        "w-80 bg-card/80 backdrop-blur-xl border-r border-border/50 flex-shrink-0 transition-all duration-300 ease-in-out lg:translate-x-0 shadow-xl",
         collapsed && "sidebar-collapsed"
       )}
       data-testid="sidebar"
     >
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="p-6 border-b border-border">
-          <Logo size="md" showText={true} />
+        <div className="p-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-transparent">
+          <div className="hover-lift">
+            <Logo size="md" showText={true} />
+          </div>
         </div>
 
         {/* User Profile */}

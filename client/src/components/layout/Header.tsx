@@ -11,7 +11,7 @@ export function Header({ onSidebarToggle, breadcrumbs = [] }: HeaderProps) {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="bg-card border-b border-border px-6 py-4 flex items-center justify-between">
+    <header className="bg-card/80 backdrop-blur-xl border-b border-border/50 px-6 py-4 flex items-center justify-between shadow-sm">
       <div className="flex items-center gap-4">
         <Button
           variant="ghost"
