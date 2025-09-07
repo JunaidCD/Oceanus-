@@ -114,8 +114,63 @@ export default function Login() {
             {/* Feature Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-6 max-w-2xl mx-auto lg:mx-0">
               <div className="group flex flex-col items-center lg:items-start text-center lg:text-left space-y-3 p-4 rounded-xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-                  <div className="w-6 h-6 rounded-full bg-white"></div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 relative overflow-hidden">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform duration-300">
+                    <defs>
+                      <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#ffffff" stopOpacity="1"/>
+                        <stop offset="50%" stopColor="#e0f2fe" stopOpacity="0.9"/>
+                        <stop offset="100%" stopColor="#ffffff" stopOpacity="0.7"/>
+                      </linearGradient>
+                      <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#fbbf24" stopOpacity="1"/>
+                        <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.8"/>
+                      </linearGradient>
+                    </defs>
+                    
+                    {/* Ocean depth layers */}
+                    <rect x="2" y="16" width="24" height="2" fill="url(#oceanGrad)" opacity="0.6">
+                      <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="2" y="19" width="24" height="2" fill="url(#oceanGrad)" opacity="0.4">
+                      <animate attributeName="opacity" values="0.4;0.6;0.4" dur="2.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="2" y="22" width="24" height="2" fill="url(#oceanGrad)" opacity="0.3">
+                      <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2s" repeatCount="indefinite"/>
+                    </rect>
+                    
+                    {/* Temperature/salinity sensors */}
+                    <circle cx="6" cy="12" r="1.5" fill="url(#dataGrad)">
+                      <animate attributeName="r" values="1.5;2;1.5" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="14" cy="8" r="1.2" fill="url(#dataGrad)" opacity="0.8">
+                      <animate attributeName="r" values="1.2;1.7;1.2" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="22" cy="10" r="1.8" fill="url(#dataGrad)" opacity="0.9">
+                      <animate attributeName="r" values="1.8;2.3;1.8" dur="1.8s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    {/* Data transmission lines */}
+                    <path d="M6 12 Q10 6, 14 8 Q18 4, 22 10" stroke="#fbbf24" strokeWidth="1.5" fill="none" opacity="0.7">
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+                    </path>
+                    
+                    {/* Real-time data points */}
+                    <circle cx="8" cy="6" r="0.6" fill="white" opacity="0.8">
+                      <animateTransform attributeName="transform" type="translate" values="0,0;2,1;4,0;2,-1;0,0" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="18" cy="14" r="0.8" fill="white" opacity="0.6">
+                      <animateTransform attributeName="transform" type="translate" values="0,0;-1,2;0,4;1,2;0,0" dur="3.5s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    {/* Measurement indicators */}
+                    <rect x="4" y="4" width="2" height="1" fill="white" opacity="0.7">
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="20" y="6" width="2" height="1" fill="white" opacity="0.8">
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.8s" repeatCount="indefinite"/>
+                    </rect>
+                  </svg>
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">Real-time Analysis</h3>
@@ -124,8 +179,72 @@ export default function Login() {
               </div>
 
               <div className="group flex flex-col items-center lg:items-start text-center lg:text-left space-y-3 p-4 rounded-xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-600 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-                  <div className="w-6 h-6 rounded-full bg-white"></div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-600 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 relative overflow-hidden">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform duration-300">
+                    <defs>
+                      <linearGradient id="speciesGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#ffffff" stopOpacity="1"/>
+                        <stop offset="50%" stopColor="#f0fdfa" stopOpacity="0.9"/>
+                        <stop offset="100%" stopColor="#ffffff" stopOpacity="0.8"/>
+                      </linearGradient>
+                      <radialGradient id="aiScanGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#10b981" stopOpacity="0.8"/>
+                        <stop offset="100%" stopColor="#059669" stopOpacity="0.2"/>
+                      </radialGradient>
+                    </defs>
+                    
+                    {/* Main fish being identified */}
+                    <path d="M6 14 Q11 11, 16 14 Q18 16, 16 18 Q11 17, 6 14 Z" fill="url(#speciesGrad)">
+                      <animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    
+                    {/* Fish tail */}
+                    <path d="M16 14 L21 11 L21 17 Z" fill="url(#speciesGrad)" opacity="0.9"/>
+                    
+                    {/* Fish eye */}
+                    <circle cx="10" cy="14" r="1" fill="#0891b2" opacity="0.9"/>
+                    <circle cx="10" cy="14" r="0.5" fill="white"/>
+                    
+                    {/* AI scanning grid overlay */}
+                    <g opacity="0.6">
+                      <path d="M4 10 L24 10" stroke="#10b981" strokeWidth="0.5">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                      </path>
+                      <path d="M4 14 L24 14" stroke="#10b981" strokeWidth="0.5">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="2.2s" repeatCount="indefinite"/>
+                      </path>
+                      <path d="M4 18 L24 18" stroke="#10b981" strokeWidth="0.5">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+                      </path>
+                    </g>
+                    
+                    {/* Species identification markers */}
+                    <circle cx="8" cy="12" r="0.8" fill="none" stroke="#10b981" strokeWidth="1">
+                      <animate attributeName="r" values="0.8;1.5;0.8" dur="3s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="18" cy="16" r="0.6" fill="none" stroke="#10b981" strokeWidth="1">
+                      <animate attributeName="r" values="0.6;1.2;0.6" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    {/* AI classification indicators */}
+                    <rect x="22" y="8" width="4" height="1" fill="#10b981" opacity="0.8">
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="22" y="10" width="3" height="1" fill="#10b981" opacity="0.6">
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="22" y="12" width="2" height="1" fill="#10b981" opacity="0.7">
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+                    </rect>
+                    
+                    {/* Scanning beam effect */}
+                    <path d="M2 8 L26 20" stroke="url(#aiScanGlow)" strokeWidth="1" opacity="0.4">
+                      <animateTransform attributeName="transform" type="translate" values="0,-10;0,0;0,10" dur="4s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite"/>
+                    </path>
+                  </svg>
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">AI-Powered</h3>
@@ -134,8 +253,82 @@ export default function Login() {
               </div>
 
               <div className="group flex flex-col items-center lg:items-start text-center lg:text-left space-y-3 p-4 rounded-xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-                  <div className="w-6 h-6 rounded-full bg-white"></div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 relative overflow-hidden">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform duration-300">
+                    <defs>
+                      <linearGradient id="biodiversityGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#ffffff" stopOpacity="1"/>
+                        <stop offset="100%" stopColor="#fef3c7" stopOpacity="0.8"/>
+                      </linearGradient>
+                      <radialGradient id="insightGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#34d399" stopOpacity="0.8"/>
+                        <stop offset="100%" stopColor="#10b981" stopOpacity="0.3"/>
+                      </radialGradient>
+                    </defs>
+                    
+                    {/* Multiple species representing biodiversity */}
+                    <g>
+                      {/* Fish species 1 */}
+                      <path d="M4 10 Q6 9, 8 10 Q6 11, 4 10" fill="url(#biodiversityGrad)" opacity="0.9">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;2,1;4,0;2,-1;0,0" dur="5s" repeatCount="indefinite"/>
+                      </path>
+                      
+                      {/* Fish species 2 */}
+                      <path d="M20 12 Q18 11, 16 12 Q18 13, 20 12" fill="url(#biodiversityGrad)" opacity="0.8">
+                        <animateTransform attributeName="transform" type="translate" values="0,0;-1,2;-2,0;-1,-2;0,0" dur="6s" repeatCount="indefinite"/>
+                      </path>
+                      
+                      {/* Coral/plant life */}
+                      <path d="M8 20 Q9 18, 10 20 Q11 18, 12 20 V22 H8 Z" fill="url(#biodiversityGrad)">
+                        <animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="3s" repeatCount="indefinite"/>
+                      </path>
+                      
+                      {/* Seaweed/kelp */}
+                      <path d="M2 22 Q3 18, 2 14 Q1 10, 2 6" stroke="url(#insightGlow)" strokeWidth="1.5" fill="none">
+                        <animateTransform attributeName="transform" type="rotate" values="0 2 14;3 2 14;0 2 14;-3 2 14;0 2 14" dur="4s" repeatCount="indefinite"/>
+                      </path>
+                      <path d="M26 22 Q25 19, 26 16 Q27 13, 26 10" stroke="url(#insightGlow)" strokeWidth="1.5" fill="none">
+                        <animateTransform attributeName="transform" type="rotate" values="0 26 16;-3 26 16;0 26 16;3 26 16;0 26 16" dur="3.5s" repeatCount="indefinite"/>
+                      </path>
+                    </g>
+                    
+                    {/* Data visualization nodes showing insights */}
+                    <circle cx="14" cy="8" r="1.2" fill="url(#insightGlow)">
+                      <animate attributeName="r" values="1.2;1.8;1.2" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="10" cy="14" r="0.8" fill="url(#insightGlow)" opacity="0.8">
+                      <animate attributeName="r" values="0.8;1.3;0.8" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="18" cy="18" r="1" fill="url(#insightGlow)" opacity="0.9">
+                      <animate attributeName="r" values="1;1.5;1" dur="1.8s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    {/* Connection lines showing ecosystem relationships */}
+                    <path d="M14 8 Q12 11, 10 14 Q14 16, 18 18" stroke="#34d399" strokeWidth="1" opacity="0.6">
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+                    </path>
+                    
+                    {/* Biodiversity metrics */}
+                    <g opacity="0.7">
+                      <rect x="22" y="4" width="1" height="3" fill="#34d399">
+                        <animate attributeName="height" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+                      </rect>
+                      <rect x="24" y="6" width="1" height="2" fill="#34d399">
+                        <animate attributeName="height" values="2;4;2" dur="2.5s" repeatCount="indefinite"/>
+                      </rect>
+                      <rect x="26" y="5" width="1" height="3" fill="#34d399">
+                        <animate attributeName="height" values="3;6;3" dur="1.8s" repeatCount="indefinite"/>
+                      </rect>
+                    </g>
+                    
+                    {/* Floating insight particles */}
+                    <circle cx="6" cy="6" r="0.4" fill="url(#insightGlow)">
+                      <animateTransform attributeName="transform" type="translate" values="0,0;3,2;6,0;3,-2;0,0" dur="6s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="22" cy="22" r="0.5" fill="url(#insightGlow)">
+                      <animateTransform attributeName="transform" type="translate" values="0,0;-2,1;-4,0;-2,-1;0,0" dur="5s" repeatCount="indefinite"/>
+                    </circle>
+                  </svg>
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">Comprehensive</h3>
@@ -148,7 +341,7 @@ export default function Login() {
           {/* Right Side - Login Form */}
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-sm">
-              <Card className="backdrop-blur-xl bg-white/80 dark:bg-slate-900/80 border-white/20 dark:border-slate-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
+              <Card className="backdrop-blur-xl bg-white/80 dark:bg-slate-900/80 border-white/20 dark:border-slate-700/50 shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] transition-all duration-300">
                 <CardHeader className="space-y-2 pb-4">
                   <div className="text-center space-y-1">
                     <h2 className="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">

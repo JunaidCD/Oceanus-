@@ -29,73 +29,93 @@ export function Logo({ className, size = "md", showText = true }: LogoProps) {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
+          key="oceanus-logo-v2"
         >
-          {/* Ocean waves background */}
           <defs>
-            <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
-              <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="1" />
-              <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
+            {/* Ocean gradient */}
+            <linearGradient id="oceanGradientV2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0ea5e9" />
+              <stop offset="50%" stopColor="#0284c7" />
+              <stop offset="100%" stopColor="#0369a1" />
             </linearGradient>
-            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="hsl(var(--primary-foreground))" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="hsl(var(--primary-foreground))" stopOpacity="0.1" />
+            
+            {/* Wave gradient */}
+            <linearGradient id="waveGradientV2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#0891b2" stopOpacity="0.6" />
             </linearGradient>
+            
+            {/* Circular clipping mask */}
+            <clipPath id="circleClipV2">
+              <circle cx="24" cy="24" r="20" />
+            </clipPath>
           </defs>
           
-          {/* Main circular background */}
-          <circle cx="24" cy="24" r="22" fill="url(#oceanGradient)" stroke="hsl(var(--primary-foreground))" strokeWidth="1" strokeOpacity="0.2" />
+          {/* Main circular container */}
+          <circle cx="24" cy="24" r="20" fill="url(#oceanGradientV2)" />
           
-          {/* Ocean waves - layered for depth */}
-          <path
-            d="M6 28 Q12 24, 18 28 T30 28 T42 28 V40 Q36 36, 30 40 T18 40 T6 40 Z"
-            fill="url(#waveGradient)"
-          />
-          <path
-            d="M4 32 Q10 28, 16 32 T28 32 T40 32 V42 Q34 38, 28 42 T16 42 T4 42 Z"
-            fill="hsl(var(--primary-foreground))"
-            fillOpacity="0.15"
-          />
-          
-          {/* DNA/Molecular helix structure representing biodiversity */}
-          <g transform="translate(20, 8)">
-            {/* DNA backbone */}
+          {/* Ocean waves - clipped to stay inside circle */}
+          <g clipPath="url(#circleClipV2)">
             <path
-              d="M2 4 Q4 8, 2 12 Q0 16, 2 20 Q4 24, 2 28"
-              stroke="hsl(var(--primary-foreground))"
-              strokeWidth="1.5"
-              fill="none"
-              strokeOpacity="0.6"
+              d="M4 30 Q12 28, 20 30 T36 30 T44 30 V44 H4 Z"
+              fill="url(#waveGradientV2)"
             />
             <path
-              d="M6 4 Q4 8, 6 12 Q8 16, 6 20 Q4 24, 6 28"
-              stroke="hsl(var(--primary-foreground))"
-              strokeWidth="1.5"
-              fill="none"
-              strokeOpacity="0.6"
+              d="M4 34 Q16 32, 28 34 T44 34 V44 H4 Z"
+              fill="#0891b2"
+              fillOpacity="0.7"
             />
-            
-            {/* DNA base pairs */}
-            <line x1="2" y1="6" x2="6" y2="6" stroke="hsl(var(--primary-foreground))" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="2" y1="10" x2="6" y2="10" stroke="hsl(var(--primary-foreground))" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="2" y1="14" x2="6" y2="14" stroke="hsl(var(--primary-foreground))" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="2" y1="18" x2="6" y2="18" stroke="hsl(var(--primary-foreground))" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="2" y1="22" x2="6" y2="22" stroke="hsl(var(--primary-foreground))" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="2" y1="26" x2="6" y2="26" stroke="hsl(var(--primary-foreground))" strokeWidth="1" strokeOpacity="0.4" />
           </g>
           
-          {/* Data nodes representing AI/digital aspect */}
-          <circle cx="14" cy="16" r="2" fill="hsl(var(--primary-foreground))" fillOpacity="0.6" />
-          <circle cx="34" cy="18" r="1.5" fill="hsl(var(--primary-foreground))" fillOpacity="0.5" />
-          <circle cx="32" cy="12" r="1" fill="hsl(var(--primary-foreground))" fillOpacity="0.4" />
+          {/* Central "O" with clean design */}
+          <circle cx="24" cy="24" r="10" fill="none" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.9" />
+          <circle cx="24" cy="24" r="6" fill="#ffffff" fillOpacity="0.15" />
           
-          {/* Connecting lines between data nodes */}
-          <line x1="14" y1="16" x2="32" y2="12" stroke="hsl(var(--primary-foreground))" strokeWidth="0.8" strokeOpacity="0.3" />
-          <line x1="32" y1="12" x2="34" y2="18" stroke="hsl(var(--primary-foreground))" strokeWidth="0.8" strokeOpacity="0.3" />
-          
-          {/* Central "O" letter with modern styling */}
-          <circle cx="24" cy="24" r="8" fill="none" stroke="hsl(var(--primary-foreground))" strokeWidth="2.5" strokeOpacity="0.9" />
-          <circle cx="24" cy="24" r="5" fill="hsl(var(--primary-foreground))" fillOpacity="0.15" />
+          {/* Marine elements - NO BUBBLES */}
+          <g opacity="1">
+            {/* Large Fish symbol */}
+            <path
+              d="M12 18 Q16 16, 20 18 Q18 20, 16 20 Q14 20, 12 18 Z"
+              fill="#10b981"
+            />
+            <path d="M20 18 L24 16 L24 20 Z" fill="#059669" />
+            <circle cx="15" cy="18" r="1" fill="#ffffff" opacity="0.9" />
+            
+            {/* Large Starfish - NO circles */}
+            <g transform="translate(32, 14)">
+              <path d="M0 -3 L1 -1 L3 0 L1 1 L0 3 L-1 1 L-3 0 L-1 -1 Z" fill="#8b5cf6" />
+              <path d="M0 -2 L0.5 -0.5 L2 0 L0.5 0.5 L0 2 L-0.5 0.5 L-2 0 L-0.5 -0.5 Z" fill="#a855f7" />
+            </g>
+            
+            {/* Seahorse - detailed */}
+            <g transform="translate(36, 20)">
+              <path d="M0 0 Q1 -2, 0 -4 Q-1 -3, 0 -2 Q1 -1, 0 0 Q0.5 1, 0 2 Q-0.5 1.5, 0 1" stroke="#8b5cf6" strokeWidth="1.5" fill="none" />
+              <path d="M0 -3 L0.5 -3.5 L0 -4" stroke="#8b5cf6" strokeWidth="1" fill="none" />
+            </g>
+            
+            {/* Coral Tree */}
+            <g transform="translate(14, 32)">
+              <path d="M0 6 Q1 4, 2 6 Q3 4, 4 6 Q5 4, 6 6 V8 H0 Z" fill="#ff6b6b" />
+              <path d="M1 6 Q2 2, 3 6" stroke="#ff4757" strokeWidth="1" fill="none" />
+              <path d="M3 6 Q4 2, 5 6" stroke="#ff4757" strokeWidth="1" fill="none" />
+            </g>
+            
+            {/* Seaweed Forest */}
+            <g transform="translate(8, 24)">
+              <path d="M0 12 Q2 10, 0 8 Q-2 6, 0 4 Q2 2, 0 0" stroke="#2ed573" strokeWidth="2" fill="none" />
+              <path d="M3 12 Q5 9, 3 6 Q1 4, 3 2 Q5 0, 3 -2" stroke="#26d0ce" strokeWidth="1.5" fill="none" />
+            </g>
+            
+            {/* Shell Collection */}
+            <g transform="translate(36, 30)">
+              <path d="M0 3 Q2 0, 4 3 Q3 2, 2 3 Q1 2, 0 3" fill="#ffa502" />
+              <path d="M2 3 L2 0" stroke="#ff6348" strokeWidth="1" />
+              <path d="M1 2 L3 2" stroke="#ff6348" strokeWidth="0.5" />
+            </g>
+            
+            {/* Wave Pattern */}
+            <path d="M34 16 Q36 15, 38 16 Q40 17, 42 16 Q44 15, 46 16" stroke="#74b9ff" strokeWidth="2" fill="none" />
+          </g>
         </svg>
       </div>
       
