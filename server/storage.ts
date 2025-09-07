@@ -38,25 +38,25 @@ export class MemStorage implements IStorage {
   private seedMockUsers() {
     const mockUsers: InsertUser[] = [
       {
-        email: "admin@oceanus",
+        email: "admin@oceanus.com",
         password: "password", // In real app, this would be hashed
         name: "Admin User",
         role: "admin"
       },
       {
-        email: "res@oceanus",
+        email: "researcher@oceanus.com",
         password: "password",
         name: "Dr. Sarah Chen",
         role: "researcher"
       },
       {
-        email: "policy@oceanus",
+        email: "policy@oceanus.com",
         password: "password",
         name: "Policy Analyst",
         role: "policy_user"
       },
       {
-        email: "guest@oceanus",
+        email: "guest@oceanus.com",
         password: "password",
         name: "Guest User",
         role: "guest"

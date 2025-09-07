@@ -146,10 +146,10 @@ export default function Login() {
           <div className="mt-6 p-4 bg-muted rounded-lg">
             <p className="text-sm font-medium mb-2">Demo Credentials:</p>
             <div className="text-xs space-y-1 text-muted-foreground">
-              <p>Admin: admin@oceanus / password</p>
-              <p>Researcher: res@oceanus / password</p>
-              <p>Policy User: policy@oceanus / password</p>
-              <p>Guest: guest@oceanus / password</p>
+              <p><strong>Admin:</strong> admin@oceanus.com / password</p>
+              <p><strong>Researcher:</strong> researcher@oceanus.com / password</p>
+              <p><strong>Policy User:</strong> policy@oceanus.com / password</p>
+              <p><strong>Guest:</strong> guest@oceanus.com / password</p>
             </div>
           </div>
         </CardContent>
