@@ -58,6 +58,7 @@ This project is optimized for Replit development:
 2. **Install dependencies**:
    ```bash
    npm install
+   npm install --save-dev cross-env
    ```
 
 3. **Start development server**:
