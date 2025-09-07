@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
-import { Brain, Upload, Dna, Eye, FileImage, Microscope } from 'lucide-react';
+import { Brain, Upload, Dna, Eye, FileImage, Microscope, Sparkles, Waves } from 'lucide-react';
 
 interface SpeciesPrediction {
   species: string;
@@ -126,41 +126,86 @@ export default function AITools() {
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <div className="p-6 space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold mb-2">AI Tools</h1>
-            <p className="text-muted-foreground">
-              Advanced AI-powered analysis tools for marine research
-            </p>
-          </div>
+      <div className="min-h-screen bg-background relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-40 right-32 w-48 h-48 bg-gradient-to-br from-teal-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-32 left-1/3 w-56 h-56 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
 
-        <Tabs defaultValue="species" className="w-full" data-testid="tabs-ai-tools">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="species" data-testid="tab-species">
+        <div className="relative z-10 p-6 space-y-8 max-w-7xl mx-auto">
+          {/* Hero Header */}
+          <div className="text-center space-y-6 py-12">
+            <div className="relative inline-block">
+              <div className="w-24 h-24 bg-gradient-to-br from-purple-500/20 to-blue-500/20 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center mb-6 mx-auto animate-pulse">
+                <Brain className="w-12 h-12 text-purple-400" />
+              </div>
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-teal-400 bg-clip-text text-transparent mb-4">
+                AI Tools
+              </h1>
+              <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+                Advanced AI-powered analysis tools for marine research and species identification
+              </p>
+            </div>
+            
+            {/* Action Buttons */}
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <Button className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white rounded-xl px-6 py-3 transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
+                <Sparkles className="w-5 h-5 mr-2" />
+                Quick Analysis
+              </Button>
+              <Button variant="outline" className="bg-white/5 border-white/10 text-white hover:bg-white/10 rounded-xl px-6 py-3">
+                <Upload className="w-5 h-5 mr-2" />
+                Batch Upload
+              </Button>
+              <Button variant="outline" className="bg-white/5 border-white/10 text-white hover:bg-white/10 rounded-xl px-6 py-3">
+                <Eye className="w-5 h-5 mr-2" />
+                View Results
+              </Button>
+            </div>
+          </div>
+
+          <Tabs defaultValue="species" className="w-full" data-testid="tabs-ai-tools">
+            <TabsList className="grid w-full grid-cols-3 bg-white/5 backdrop-blur-xl border border-white/10 p-1 rounded-xl">
+            <TabsTrigger 
+              value="species" 
+              data-testid="tab-species"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/20 data-[state=active]:to-emerald-600/20 data-[state=active]:text-white data-[state=active]:border-blue-500/30 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-300 rounded-lg border border-transparent"
+            >
               <Brain className="w-4 h-4 mr-2" />
               Species Prediction
             </TabsTrigger>
-            <TabsTrigger value="otolith" data-testid="tab-otolith">
+            <TabsTrigger 
+              value="otolith" 
+              data-testid="tab-otolith"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-600/20 data-[state=active]:to-yellow-600/20 data-[state=active]:text-white data-[state=active]:border-orange-500/30 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-300 rounded-lg border border-transparent"
+            >
               <Microscope className="w-4 h-4 mr-2" />
               Otolith Viewer
             </TabsTrigger>
-            <TabsTrigger value="dna" data-testid="tab-dna">
+            <TabsTrigger 
+              value="dna" 
+              data-testid="tab-dna"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600/20 data-[state=active]:to-pink-600/20 data-[state=active]:text-white data-[state=active]:border-purple-500/30 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-300 rounded-lg border border-transparent"
+            >
               <Dna className="w-4 h-4 mr-2" />
               DNA Matcher
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="species" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Species Identification</CardTitle>
-                <p className="text-muted-foreground">
-                  Upload an image of a marine species for AI-powered identification
-                </p>
-              </CardHeader>
-              <CardContent>
+            <TabsContent value="species" className="space-y-6">
+              <Card className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Brain className="w-5 h-5 text-blue-400" />
+                    Species Identification
+                  </CardTitle>
+                  <p className="text-slate-400">
+                    Upload an image of a marine species for AI-powered identification
+                  </p>
+                </CardHeader>
+                <CardContent className="p-6">
                 <div className="space-y-6">
                   {/* Progress Steps */}
                   <div className="flex items-center justify-between">
@@ -182,28 +227,56 @@ export default function AITools() {
                   </div>
 
                   {step === 1 && (
-                    <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
-                      <FileImage className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-lg font-medium mb-2">Upload Species Image</p>
-                      <p className="text-muted-foreground mb-4">
-                        Select a clear image of the marine species you want to identify
-                      </p>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                        id="species-image-upload"
-                        data-testid="input-species-image"
-                      />
-                      <Label htmlFor="species-image-upload">
-                        <Button variant="outline" asChild>
-                          <span>
-                            <Upload className="w-4 h-4 mr-2" />
-                            Choose Image
-                          </span>
-                        </Button>
-                      </Label>
+                    <div className="relative group">
+                      {/* Enhanced Dropbox with Glassmorphism */}
+                      <div className="bg-white/5 backdrop-blur-xl border-2 border-dashed border-white/20 hover:border-blue-400/50 rounded-2xl p-12 text-center transition-all duration-300 group-hover:bg-white/10">
+                        {/* Animated particles */}
+                        <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
+                          <div className="absolute top-4 left-4 w-2 h-2 bg-blue-400/60 rounded-full animate-ping"></div>
+                          <div className="absolute top-8 right-8 w-1 h-1 bg-purple-400/60 rounded-full animate-pulse delay-300"></div>
+                          <div className="absolute bottom-6 left-8 w-1.5 h-1.5 bg-teal-400/60 rounded-full animate-bounce delay-700"></div>
+                        </div>
+                        
+                        <div className="relative z-10">
+                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <FileImage className="w-8 h-8 text-blue-400" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-white mb-3">Upload Species Image</h3>
+                          <p className="text-slate-400 mb-8 max-w-md mx-auto">
+                            Drag and drop or click to select a clear image of the marine species you want to identify
+                          </p>
+                          
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="hidden"
+                            id="species-image-upload"
+                            data-testid="input-species-image"
+                          />
+                          <label 
+                            htmlFor="species-image-upload"
+                            className="group/btn relative inline-flex items-center gap-3 cursor-pointer overflow-hidden bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-2 border-blue-500/50 hover:border-blue-400/70 hover:from-blue-500/30 hover:to-purple-500/30 backdrop-blur-xl transition-all duration-300 px-8 py-4 font-semibold hover:scale-105 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 rounded-xl"
+                          >
+                            {/* Shimmer Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+                            
+                            {/* Icon Container */}
+                            <div className="relative z-10 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center group-hover/btn:rotate-12 transition-transform duration-300 shadow-lg">
+                              <Upload className="w-6 h-6 text-white" />
+                            </div>
+                            
+                            {/* Text Content */}
+                            <div className="relative z-10 text-left">
+                              <div className="text-white font-bold text-lg">Choose Image</div>
+                              <div className="text-blue-200 text-sm font-normal">Upload marine species photo</div>
+                            </div>
+                            
+                            {/* Pulse Ring Effect */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-blue-400/0 group-hover/btn:border-blue-400/50 group-hover/btn:animate-pulse transition-all duration-300"></div>
+                          </label>
+                        </div>
+                      </div>
                     </div>
                   )}
 
@@ -307,30 +380,60 @@ export default function AITools() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="otolith" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>3D Otolith Viewer</CardTitle>
-                <p className="text-muted-foreground">
-                  Interactive 3D visualization of otolith structures for age and growth analysis
-                </p>
-              </CardHeader>
-              <CardContent>
+            <TabsContent value="otolith" className="space-y-6">
+              <Card className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Microscope className="w-5 h-5 text-orange-400" />
+                    3D Otolith Viewer
+                  </CardTitle>
+                  <p className="text-slate-400">
+                    Interactive 3D visualization of otolith structures for age and growth analysis
+                  </p>
+                </CardHeader>
+                <CardContent className="p-6">
                 <div className="h-96 bg-muted rounded-lg flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
                     {/* Mock 3D viewer interface */}
                     <div className="absolute top-4 left-4 bg-background/90 p-2 rounded text-sm">
                       3D Otolith Model
                     </div>
-                    <div className="absolute bottom-4 right-4 space-y-2">
-                      <Button size="sm" variant="outline" data-testid="button-rotate-otolith">
-                        <Eye className="w-4 h-4 mr-2" />
-                        Rotate
-                      </Button>
-                      <Button size="sm" variant="outline" data-testid="button-measure-otolith">
-                        <Microscope className="w-4 h-4 mr-2" />
-                        Measure
-                      </Button>
+                    <div className="absolute bottom-6 right-6 flex gap-4">
+                      <button 
+                        className="group relative overflow-hidden bg-gradient-to-r from-orange-500/20 to-yellow-500/20 backdrop-blur-xl border border-orange-500/50 hover:border-orange-400/70 hover:from-orange-500/30 hover:to-yellow-500/30 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40"
+                        data-testid="button-rotate-otolith"
+                      >
+                        {/* Shimmer Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                        
+                        <div className="relative z-10 flex items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                            <Eye className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="font-semibold">Rotate</span>
+                        </div>
+                        
+                        {/* Pulse Ring Effect */}
+                        <div className="absolute inset-0 rounded-xl border-2 border-orange-400/0 group-hover:border-orange-400/50 group-hover:animate-pulse transition-all duration-300"></div>
+                      </button>
+                      
+                      <button 
+                        className="group relative overflow-hidden bg-gradient-to-r from-teal-500/20 to-cyan-500/20 backdrop-blur-xl border border-teal-500/50 hover:border-teal-400/70 hover:from-teal-500/30 hover:to-cyan-500/30 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-teal-500/20 hover:shadow-teal-500/40"
+                        data-testid="button-measure-otolith"
+                      >
+                        {/* Shimmer Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                        
+                        <div className="relative z-10 flex items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                            <Microscope className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="font-semibold">Measure</span>
+                        </div>
+                        
+                        {/* Pulse Ring Effect */}
+                        <div className="absolute inset-0 rounded-xl border-2 border-teal-400/0 group-hover:border-teal-400/50 group-hover:animate-pulse transition-all duration-300"></div>
+                      </button>
                     </div>
                     
                     {/* Mock 3D object */}
@@ -393,25 +496,28 @@ export default function AITools() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="dna" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>DNA Sequence Matcher</CardTitle>
-                <p className="text-muted-foreground">
-                  Input DNA sequences in FASTA format for species identification and phylogenetic analysis
-                </p>
-              </CardHeader>
-              <CardContent>
+            <TabsContent value="dna" className="space-y-6">
+              <Card className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Dna className="w-5 h-5 text-purple-400" />
+                    DNA Sequence Matcher
+                  </CardTitle>
+                  <p className="text-slate-400">
+                    Input DNA sequences in FASTA format for species identification and phylogenetic analysis
+                  </p>
+                </CardHeader>
+                <CardContent className="p-6">
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="dna-sequence">DNA Sequence (FASTA format)</Label>
+                    <Label htmlFor="dna-sequence" className="text-slate-300">DNA Sequence (FASTA format)</Label>
                     <Textarea
                       id="dna-sequence"
                       value={dnaSequence}
                       onChange={(e) => setDnaSequence(e.target.value)}
-                      placeholder=">Sample_Sequence_1&#10;ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG&#10;TCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGA"
+                      placeholder=">Sample_Sequence_1&#10;ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG&#10;TCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGA"
                       rows={8}
-                      className="font-mono text-sm"
+                      className="font-mono text-sm bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-purple-400/50 focus:ring-purple-400/20 rounded-xl mt-2"
                       data-testid="textarea-dna-sequence"
                     />
                   </div>
@@ -477,7 +583,8 @@ export default function AITools() {
               </CardContent>
             </Card>
           </TabsContent>
-        </Tabs>
+          </Tabs>
+        </div>
       </div>
     </Layout>
   );

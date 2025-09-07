@@ -10,7 +10,20 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { FileText, Download, BarChart3, Calendar, FileSpreadsheet, Image, Settings } from 'lucide-react';
+import { 
+  FileText, 
+  Download, 
+  BarChart3, 
+  Calendar, 
+  FileSpreadsheet, 
+  Settings,
+  Share2,
+  Eye,
+  Microscope,
+  TrendingUp,
+  Database,
+  Filter
+} from 'lucide-react';
 
 interface ReportConfig {
   type: string;
@@ -192,62 +205,184 @@ export default function Reports() {
     { label: 'Reports' },
   ];
 
+  // Custom CSS for enhanced scrollbar and animations
+  const customStyles = `
+    .floating-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pulse-glow {
+      from { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+      to { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+    }
+  `;
+
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <div className="p-6 space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold mb-2">Report Generation</h1>
-            <p className="text-muted-foreground">
-              Generate comprehensive reports from your marine research data
-            </p>
+      <style>{customStyles}</style>
+      
+      {/* Full Screen Advanced Layout */}
+      <div className="min-h-screen bg-background relative overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-3xl floating-animation" />
+          <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-teal-500/20 to-transparent rounded-full blur-3xl floating-animation" style={{animationDelay: '2s'}} />
+          <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-purple-500/20 to-transparent rounded-full blur-3xl floating-animation" style={{animationDelay: '4s'}} />
+        </div>
+        
+        {/* Hero Header */}
+        <div className="relative z-10 px-8 pt-8 pb-12">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-4 mb-6">
+                <div className="p-4 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-2xl backdrop-blur-xl border border-white/10 pulse-glow">
+                  <FileText className="w-12 h-12 text-blue-400" />
+                </div>
+                <div className="text-left">
+                  <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                    Marine Reports
+                  </h1>
+                  <p className="text-xl text-slate-300">Advanced Research Data Generation System</p>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <Button className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white border-0 rounded-2xl px-6 py-3">
+                  <Download className="w-5 h-5 mr-2" />
+                  Export Reports
+                </Button>
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-2xl px-6 py-3">
+                  <Share2 className="w-5 h-5 mr-2" />
+                  Share Collection
+                </Button>
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-2xl px-6 py-3">
+                  <Eye className="w-5 h-5 mr-2" />
+                  Preview Mode
+                </Button>
+              </div>
+            </div>
+
+            {/* Statistics Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+              <Card className="bg-white/5 backdrop-blur-2xl border-white/10 hover:bg-white/10 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-xl mb-4">
+                    <Database className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-1">247</div>
+                  <div className="text-sm text-slate-400">Generated Reports</div>
+                  <div className="text-xs text-green-400 mt-1">+23 this month</div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/5 backdrop-blur-2xl border-white/10 hover:bg-white/10 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-teal-500/20 to-teal-600/20 rounded-xl mb-4">
+                    <BarChart3 className="w-6 h-6 text-teal-400" />
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-1">89</div>
+                  <div className="text-sm text-slate-400">Active Datasets</div>
+                  <div className="text-xs text-blue-400 mt-1">Across 12 studies</div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/5 backdrop-blur-2xl border-white/10 hover:bg-white/10 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-xl mb-4">
+                    <TrendingUp className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-1">156</div>
+                  <div className="text-sm text-slate-400">Analysis Models</div>
+                  <div className="text-xs text-purple-400 mt-1">Machine learning</div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/5 backdrop-blur-2xl border-white/10 hover:bg-white/10 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-xl mb-4">
+                    <Microscope className="w-6 h-6 text-green-400" />
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-1">1,847</div>
+                  <div className="text-sm text-slate-400">Research Papers</div>
+                  <div className="text-xs text-green-400 mt-1">Citations included</div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Report Configuration */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Report Type Selection */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Select Report Type</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {reportTypes.map((type) => {
-                    const Icon = type.icon;
-                    return (
-                      <div
-                        key={type.id}
-                        className={`p-4 border rounded-lg cursor-pointer transition-colors ${
-                          reportConfig.type === type.id
-                            ? 'border-primary bg-primary/5'
-                            : 'border-border hover:border-primary/50'
-                        }`}
-                        onClick={() => setReportConfig(prev => ({ ...prev, type: type.id }))}
-                        data-testid={`report-type-${type.id}`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <Icon className="w-6 h-6 text-primary mt-1" />
-                          <div>
-                            <h3 className="font-medium mb-1">{type.name}</h3>
-                            <p className="text-sm text-muted-foreground">{type.description}</p>
+        {/* Main Content Grid */}
+        <div className="relative z-10 px-8 pb-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Report Configuration */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Report Type Selection */}
+                <Card className="bg-white/5 backdrop-blur-2xl border-white/10 shadow-2xl">
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-2xl text-white flex items-center gap-3">
+                      <Filter className="w-6 h-6 text-blue-400" />
+                      Select Report Type
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {reportTypes.map((type) => {
+                        const Icon = type.icon;
+                        return (
+                          <div
+                            key={type.id}
+                            className={`p-6 border rounded-2xl cursor-pointer transition-all duration-300 ${
+                              reportConfig.type === type.id
+                                ? 'border-blue-400 bg-blue-500/20 shadow-lg shadow-blue-500/25'
+                                : 'border-white/20 bg-white/5 hover:border-blue-400/50 hover:bg-white/10'
+                            }`}
+                            onClick={() => setReportConfig(prev => ({ ...prev, type: type.id }))}
+                            data-testid={`report-type-${type.id}`}
+                          >
+                            <div className="flex items-start gap-4">
+                              <div className={`p-3 rounded-xl ${
+                                reportConfig.type === type.id 
+                                  ? 'bg-blue-500/30' 
+                                  : 'bg-white/10'
+                              }`}>
+                                <Icon className={`w-6 h-6 ${
+                                  reportConfig.type === type.id 
+                                    ? 'text-blue-300' 
+                                    : 'text-slate-400'
+                                }`} />
+                              </div>
+                              <div className="flex-1">
+                                <h3 className="font-semibold text-white mb-2">{type.name}</h3>
+                                <p className="text-sm text-slate-400 leading-relaxed">{type.description}</p>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
 
-            {/* Report Configuration */}
-            {reportConfig.type && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Report Configuration</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
+                {/* Report Configuration */}
+                {reportConfig.type && (
+                  <Card className="bg-white/5 backdrop-blur-2xl border-white/10 shadow-2xl">
+                    <CardHeader className="pb-6">
+                      <CardTitle className="text-2xl text-white flex items-center gap-3">
+                        <Settings className="w-6 h-6 text-teal-400" />
+                        Report Configuration
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="report-title">Report Title</Label>
@@ -260,20 +395,30 @@ export default function Reports() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="report-format">Output Format</Label>
+                      <Label htmlFor="report-format" className="text-slate-300">Output Format</Label>
                       <Select
                         value={reportConfig.format}
                         onValueChange={(value: 'pdf' | 'csv' | 'excel') => 
                           setReportConfig(prev => ({ ...prev, format: value }))
                         }
                       >
-                        <SelectTrigger id="report-format" data-testid="select-report-format">
-                          <SelectValue />
+                        <SelectTrigger 
+                          id="report-format" 
+                          data-testid="select-report-format"
+                          className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-blue-400/50 focus:ring-blue-400/20 rounded-xl mt-2 h-12"
+                        >
+                          <SelectValue className="text-white" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="pdf">PDF Report</SelectItem>
-                          <SelectItem value="excel">Excel Workbook</SelectItem>
-                          <SelectItem value="csv">CSV Data</SelectItem>
+                        <SelectContent className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl">
+                          <SelectItem value="pdf" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                            📄 PDF Report
+                          </SelectItem>
+                          <SelectItem value="excel" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                            📊 Excel Workbook
+                          </SelectItem>
+                          <SelectItem value="csv" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                            📋 CSV Data
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -321,10 +466,10 @@ export default function Reports() {
                   </div>
 
                   <div>
-                    <Label>Datasets to Include</Label>
-                    <div className="mt-2 space-y-2 max-h-32 overflow-y-auto border border-border rounded p-3">
+                    <Label className="text-slate-300">Datasets to Include</Label>
+                    <div className="mt-2 space-y-2 max-h-32 overflow-y-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4">
                       {availableDatasets.map((dataset) => (
-                        <div key={dataset} className="flex items-center space-x-2">
+                        <div key={dataset} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
                           <Checkbox
                             id={`dataset-${dataset}`}
                             checked={reportConfig.datasets.includes(dataset)}
@@ -342,8 +487,9 @@ export default function Reports() {
                               }
                             }}
                             data-testid={`checkbox-dataset-${dataset.replace(/\s+/g, '-').toLowerCase()}`}
+                            className="border-white/20 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
                           />
-                          <Label htmlFor={`dataset-${dataset}`} className="text-sm">
+                          <Label htmlFor={`dataset-${dataset}`} className="text-sm text-slate-300 cursor-pointer">
                             {dataset}
                           </Label>
                         </div>
@@ -464,6 +610,8 @@ export default function Reports() {
               </div>
             </CardContent>
           </Card>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

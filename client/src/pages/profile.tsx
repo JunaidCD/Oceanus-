@@ -99,49 +99,79 @@ export default function Profile() {
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <div className="p-6 space-y-6 max-w-4xl">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-            <User className="w-8 h-8 text-primary-foreground" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-bold">{user?.name}</h1>
-            <p className="text-muted-foreground">{user?.email}</p>
-            <Badge className="capitalize mt-1">{user?.role?.replace('_', ' ')}</Badge>
-          </div>
+      <div className="min-h-screen bg-background relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-40 right-32 w-48 h-48 bg-gradient-to-br from-teal-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-32 left-1/3 w-56 h-56 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Profile Information */}
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <User className="w-5 h-5" />
-                Profile Information
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="name">Full Name</Label>
-                  <Input
-                    id="name"
-                    value={profile.name}
-                    onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))}
-                    data-testid="input-profile-name"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={profile.email}
-                    onChange={(e) => setProfile(prev => ({ ...prev, email: e.target.value }))}
-                    data-testid="input-profile-email"
-                  />
-                </div>
+        <div className="relative z-10 p-6 space-y-8 max-w-6xl mx-auto">
+          {/* Hero Header */}
+          <div className="text-center space-y-6 py-12">
+            <div className="relative inline-block">
+              <div className="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center mb-6 mx-auto animate-pulse">
+                <User className="w-12 h-12 text-blue-400" />
               </div>
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent mb-4">
+                Profile Settings
+              </h1>
+              <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+                Manage your account, preferences, and security settings
+              </p>
+            </div>
+          </div>
+
+          {/* User Info Header */}
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 mb-8">
+            <div className="flex items-center gap-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500/30 to-purple-500/30 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center">
+                <User className="w-10 h-10 text-blue-400" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-3xl font-bold text-white mb-2">{user?.name || 'Admin User'}</h2>
+                <p className="text-slate-400 text-lg mb-3">{user?.email || 'admin@oceanus.com'}</p>
+                <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 capitalize px-4 py-2 text-sm">
+                  {user?.role?.replace('_', ' ') || 'Admin'}
+                </Badge>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Profile Information */}
+            <Card className="lg:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <User className="w-5 h-5 text-blue-400" />
+                  Profile Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="name" className="text-slate-300">Full Name</Label>
+                    <Input
+                      id="name"
+                      value={profile.name}
+                      onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))}
+                      data-testid="input-profile-name"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-slate-400 focus:border-blue-400/50 focus:ring-blue-400/20 rounded-xl mt-2"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="text-slate-300">Email Address</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={profile.email}
+                      onChange={(e) => setProfile(prev => ({ ...prev, email: e.target.value }))}
+                      data-testid="input-profile-email"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-slate-400 focus:border-blue-400/50 focus:ring-blue-400/20 rounded-xl mt-2"
+                    />
+                  </div>
+                </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -178,16 +208,28 @@ export default function Profile() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="timezone">Timezone</Label>
+                  <Label htmlFor="timezone" className="text-slate-300">Timezone</Label>
                   <Select value={profile.timezone} onValueChange={(value) => setProfile(prev => ({ ...prev, timezone: value }))}>
-                    <SelectTrigger id="timezone" data-testid="select-profile-timezone">
-                      <SelectValue />
+                    <SelectTrigger 
+                      id="timezone" 
+                      data-testid="select-profile-timezone"
+                      className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-blue-400/50 focus:ring-blue-400/20 rounded-xl mt-2 h-12"
+                    >
+                      <SelectValue className="text-white" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="UTC">UTC</SelectItem>
-                      <SelectItem value="EST">Eastern Time</SelectItem>
-                      <SelectItem value="PST">Pacific Time</SelectItem>
-                      <SelectItem value="CET">Central European Time</SelectItem>
+                    <SelectContent className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl">
+                      <SelectItem value="UTC" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🌍 UTC (Coordinated Universal Time)
+                      </SelectItem>
+                      <SelectItem value="EST" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🇺🇸 EST (Eastern Time)
+                      </SelectItem>
+                      <SelectItem value="PST" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🇺🇸 PST (Pacific Time)
+                      </SelectItem>
+                      <SelectItem value="CET" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🇪🇺 CET (Central European Time)
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -205,61 +247,66 @@ export default function Profile() {
                 />
               </div>
 
-              <Button onClick={handleSaveProfile} data-testid="button-save-profile">
-                <Save className="w-4 h-4 mr-2" />
-                Save Profile
-              </Button>
+                <Button 
+                  onClick={handleSaveProfile} 
+                  data-testid="button-save-profile"
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl px-6 py-2 transition-all duration-300"
+                >
+                  <Save className="w-4 h-4 mr-2" />
+                  Save Profile
+                </Button>
             </CardContent>
           </Card>
 
-          {/* Quick Stats */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Account Statistics</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Datasets Uploaded</span>
-                <span className="font-medium">12</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">AI Analyses Run</span>
-                <span className="font-medium">34</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Reports Generated</span>
-                <span className="font-medium">8</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Member Since</span>
-                <span className="font-medium">Jan 2024</span>
-              </div>
-            </CardContent>
-          </Card>
+            {/* Quick Stats */}
+            <Card className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-white">Account Statistics</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 p-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-slate-400">Datasets Uploaded</span>
+                  <span className="font-medium text-blue-400">12</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-slate-400">AI Analyses Run</span>
+                  <span className="font-medium text-teal-400">34</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-slate-400">Reports Generated</span>
+                  <span className="font-medium text-purple-400">8</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-slate-400">Member Since</span>
+                  <span className="font-medium text-slate-300">Jan 2024</span>
+                </div>
+              </CardContent>
+            </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Notification Preferences */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Bell className="w-5 h-5" />
-                Notification Preferences
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label>Email Updates</Label>
-                    <p className="text-sm text-muted-foreground">Receive email notifications for important updates</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Notification Preferences */}
+            <Card className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Bell className="w-5 h-5 text-yellow-400" />
+                  Notification Preferences
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 p-6">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <Label className="text-slate-300">Email Updates</Label>
+                      <p className="text-sm text-slate-400">Receive email notifications for important updates</p>
+                    </div>
+                    <Switch
+                      checked={notifications.emailUpdates}
+                      onCheckedChange={(checked) => setNotifications(prev => ({ ...prev, emailUpdates: checked }))}
+                      data-testid="switch-email-updates"
+                      className="data-[state=checked]:bg-blue-500"
+                    />
                   </div>
-                  <Switch
-                    checked={notifications.emailUpdates}
-                    onCheckedChange={(checked) => setNotifications(prev => ({ ...prev, emailUpdates: checked }))}
-                    data-testid="switch-email-updates"
-                  />
-                </div>
 
                 <div className="flex items-center justify-between">
                   <div>
@@ -317,14 +364,14 @@ export default function Profile() {
             </CardContent>
           </Card>
 
-          {/* Security Settings */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Shield className="w-5 h-5" />
-                Security Settings
-              </CardTitle>
-            </CardHeader>
+            {/* Security Settings */}
+            <Card className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Shield className="w-5 h-5 text-green-400" />
+                  Security Settings
+                </CardTitle>
+              </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -352,20 +399,34 @@ export default function Profile() {
                 </div>
 
                 <div>
-                  <Label htmlFor="session-timeout">Session Timeout</Label>
+                  <Label htmlFor="session-timeout" className="text-slate-300">Session Timeout</Label>
                   <Select 
                     value={security.sessionTimeout} 
                     onValueChange={(value) => setSecurity(prev => ({ ...prev, sessionTimeout: value }))}
                   >
-                    <SelectTrigger id="session-timeout" className="mt-2" data-testid="select-session-timeout">
-                      <SelectValue />
+                    <SelectTrigger 
+                      id="session-timeout" 
+                      className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-green-400/50 focus:ring-green-400/20 rounded-xl mt-2 h-12" 
+                      data-testid="select-session-timeout"
+                    >
+                      <SelectValue className="text-white" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="30m">30 minutes</SelectItem>
-                      <SelectItem value="1h">1 hour</SelectItem>
-                      <SelectItem value="2h">2 hours</SelectItem>
-                      <SelectItem value="4h">4 hours</SelectItem>
-                      <SelectItem value="8h">8 hours</SelectItem>
+                    <SelectContent className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl">
+                      <SelectItem value="30m" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        ⏱️ 30 minutes
+                      </SelectItem>
+                      <SelectItem value="1h" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🕐 1 hour
+                      </SelectItem>
+                      <SelectItem value="2h" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🕑 2 hours
+                      </SelectItem>
+                      <SelectItem value="4h" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🕓 4 hours
+                      </SelectItem>
+                      <SelectItem value="8h" className="text-white hover:bg-white/10 focus:bg-white/10 rounded-lg">
+                        🕗 8 hours
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -379,14 +440,14 @@ export default function Profile() {
           </Card>
         </div>
 
-        {/* API Key Management */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Key className="w-5 h-5" />
-              API Key Management
-            </CardTitle>
-          </CardHeader>
+          {/* API Key Management */}
+          <Card className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-white">
+                <Key className="w-5 h-5 text-purple-400" />
+                API Key Management
+              </CardTitle>
+            </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <Label>Your API Key</Label>
@@ -443,6 +504,7 @@ export default function Profile() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </Layout>
   );
