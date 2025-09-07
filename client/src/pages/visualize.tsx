@@ -299,7 +299,7 @@ export default function Visualize() {
                           <div className={`w-4 h-4 ${layer.color} rounded`} />
                           <span className="font-medium">{layer.name}</span>
                         </div>
-                        <Switch checked={layer.enabled} readOnly />
+                        <Switch checked={layer.enabled} disabled />
                       </div>
                     ))}
                   </div>

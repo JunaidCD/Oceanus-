@@ -165,6 +165,10 @@ export class MemStorage implements IStorage {
       id,
       uploadedBy: userId,
       createdAt: new Date(),
+      metadata: dataset.metadata || null,
+      size: dataset.size || null,
+      location: dataset.location || null,
+      status: dataset.status || 'pending',
     };
     this.datasets.set(id, newDataset);
     return newDataset;
@@ -193,6 +197,9 @@ export class MemStorage implements IStorage {
       id,
       createdBy: userId,
       createdAt: new Date(),
+      results: analysis.results || null,
+      status: analysis.status || 'pending',
+      datasetId: analysis.datasetId || null,
     };
     this.analyses.set(id, newAnalysis);
     return newAnalysis;
