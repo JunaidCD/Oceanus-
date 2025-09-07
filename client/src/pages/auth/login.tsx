@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useAuth } from '@/lib/auth';
 import { useToast } from '@/hooks/use-toast';
+import { Logo } from '@/components/ui/logo';
 import { loginSchema, type LoginData } from '@shared/schema';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
@@ -62,13 +63,13 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted p-4">
       <Card className="w-full max-w-md">
-        <CardHeader className="text-center space-y-4">
-          <div className="w-16 h-16 mx-auto bg-primary rounded-2xl flex items-center justify-center">
-            <div className="w-8 h-8 text-primary-foreground font-bold text-xl">O</div>
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold">Welcome to Oceanus</h1>
-            <p className="text-muted-foreground">AI-Driven Marine Data Platform</p>
+        <CardHeader className="text-center space-y-6">
+          <div className="flex flex-col items-center space-y-4">
+            <Logo size="xl" showText={false} />
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Welcome to Oceanus</h1>
+              <p className="text-muted-foreground mt-2">AI-Driven Marine Data Platform</p>
+            </div>
           </div>
         </CardHeader>
 

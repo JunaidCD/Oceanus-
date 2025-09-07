@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
+import { Logo } from '@/components/ui/logo';
 import { 
   Home, 
   Upload, 
@@ -50,15 +51,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       <div className="flex flex-col h-full">
         {/* Header */}
         <div className="p-6 border-b border-border">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <div className="w-6 h-6 text-primary-foreground font-bold">O</div>
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-primary">Oceanus</h1>
-              <p className="text-sm text-muted-foreground">Marine Data Platform</p>
-            </div>
-          </div>
+          <Logo size="md" showText={true} />
         </div>
 
         {/* User Profile */}
