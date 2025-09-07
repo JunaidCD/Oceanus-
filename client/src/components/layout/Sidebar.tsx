@@ -39,6 +39,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const [location] = useLocation();
   const { user, logout } = useAuth();
   const [adminExpanded, setAdminExpanded] = useState(false);
+  const [reportsExpanded, setReportsExpanded] = useState(false);
 
   const visibleItems = navigationItems.filter(item => 
     user && item.roles.includes(user.role)
@@ -86,6 +87,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
             const Icon = item.icon;
             const isActive = location === item.path;
             const isAdmin = item.path === '/admin';
+            const isReports = item.path === '/reports';
             
             return (
               <div key={item.path}>
@@ -186,6 +188,30 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
               </div>
             );
           })}
+          
+          {/* Standalone Logout Button for Researchers, Policy Users, and Guests */}
+          {(user?.role === 'researcher' || user?.role === 'policy_user' || user?.role === 'guest') && (
+            <div className="px-1 mt-2">
+              <button 
+                onClick={() => {
+                  logout();
+                  window.location.href = '/';
+                }}
+                className="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 group relative overflow-hidden w-full text-left text-slate-300 hover:text-white hover:bg-gradient-to-r hover:from-red-500/20 hover:to-rose-500/20 backdrop-blur-sm border border-transparent hover:border-red-400/30"
+                data-testid="button-logout"
+              >
+                {/* Animated background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-rose-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                
+                <div className="relative z-10 flex items-center gap-3">
+                  <div className="p-1.5 rounded-lg group-hover:bg-red-500/20 transition-all duration-300">
+                    <LogOut className="w-4 h-4" />
+                  </div>
+                  <span className="font-medium">Logout</span>
+                </div>
+              </button>
+            </div>
+          )}
         </nav>
       </div>
     </aside>
