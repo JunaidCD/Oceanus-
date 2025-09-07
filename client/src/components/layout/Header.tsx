@@ -60,21 +60,16 @@ export function Header({ onSidebarToggle, breadcrumbs = [] }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-3 relative z-10">
-        {/* Enhanced Theme Toggle */}
+        {/* Dark Theme Indicator */}
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="relative overflow-hidden group hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-orange-500/20 transition-all duration-300 border border-transparent hover:border-yellow-400/30 rounded-xl"
-          data-testid="button-theme-toggle"
-          aria-label="Toggle theme"
+          className="relative overflow-hidden group hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300 border border-transparent hover:border-blue-400/30 rounded-xl cursor-default"
+          data-testid="button-theme-indicator"
+          aria-label="Dark theme active"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-          {theme === 'dark' ? (
-            <Sun className="w-5 h-5 text-yellow-400 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-          ) : (
-            <Moon className="w-5 h-5 text-blue-400 relative z-10 group-hover:scale-110 transition-transform duration-300" />
-          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+          <Moon className="w-5 h-5 text-blue-400 relative z-10 group-hover:scale-110 transition-transform duration-300" />
         </Button>
 
         {/* Enhanced Notifications */}
