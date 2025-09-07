@@ -61,19 +61,80 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center space-y-6">
-          <div className="flex flex-col items-center space-y-4">
-            <Logo size="xl" showText={false} />
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Welcome to Oceanus</h1>
-              <p className="text-muted-foreground mt-2">AI-Driven Marine Data Platform</p>
+    <div className="min-h-screen flex">
+      {/* Left side - Branding and Visual */}
+      <div className="hidden lg:flex lg:flex-1 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="oceanPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                <circle cx="30" cy="30" r="1.5" fill="currentColor" />
+                <circle cx="10" cy="10" r="1" fill="currentColor" />
+                <circle cx="50" cy="10" r="1" fill="currentColor" />
+                <circle cx="10" cy="50" r="1" fill="currentColor" />
+                <circle cx="50" cy="50" r="1" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#oceanPattern)" />
+          </svg>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-center px-12 text-white">
+          <div className="space-y-6">
+            <Logo size="xl" showText={true} className="text-white [&_h1]:text-white [&_p]:text-blue-100" />
+            <div className="space-y-4">
+              <h2 className="text-4xl font-bold leading-tight">
+                Unlock the Secrets of <br />
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  Marine Ecosystems
+                </span>
+              </h2>
+              <p className="text-xl text-blue-100 leading-relaxed max-w-md">
+                Advanced AI-powered platform for oceanographic research, fisheries analysis, and molecular biodiversity insights.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-4 mt-8 max-w-md">
+              <div className="flex items-center gap-3 text-blue-100">
+                <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-blue-400"></div>
+                </div>
+                <span>Real-time oceanographic data analysis</span>
+              </div>
+              <div className="flex items-center gap-3 text-blue-100">
+                <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
+                </div>
+                <span>AI-powered species identification</span>
+              </div>
+              <div className="flex items-center gap-3 text-blue-100">
+                <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
+                </div>
+                <span>Comprehensive biodiversity insights</span>
+              </div>
             </div>
           </div>
-        </CardHeader>
+        </div>
+      </div>
 
-        <CardContent>
+      {/* Right side - Login Form */}
+      <div className="flex-1 lg:flex-none lg:w-[480px] flex items-center justify-center p-8 bg-background">
+        <div className="w-full max-w-md space-y-8">
+          {/* Mobile logo (only shown on small screens) */}
+          <div className="lg:hidden text-center">
+            <Logo size="lg" showText={true} />
+          </div>
+
+          <div className="text-center lg:text-left">
+            <h1 className="text-2xl lg:text-3xl font-bold">Welcome back</h1>
+            <p className="text-muted-foreground mt-2">Sign in to your Oceanus account</p>
+          </div>
+
+          <Card className="border-0 shadow-none lg:shadow-md lg:border">
+            <CardContent className="p-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -144,17 +205,19 @@ export default function Login() {
             </form>
           </Form>
 
-          <div className="mt-6 p-4 bg-muted rounded-lg">
-            <p className="text-sm font-medium mb-2">Demo Credentials:</p>
-            <div className="text-xs space-y-1 text-muted-foreground">
-              <p><strong>Admin:</strong> admin@oceanus.com / password</p>
-              <p><strong>Researcher:</strong> researcher@oceanus.com / password</p>
-              <p><strong>Policy User:</strong> policy@oceanus.com / password</p>
-              <p><strong>Guest:</strong> guest@oceanus.com / password</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+              <div className="mt-6 p-4 bg-muted rounded-lg">
+                <p className="text-sm font-medium mb-2">Demo Credentials:</p>
+                <div className="text-xs space-y-1 text-muted-foreground">
+                  <p><strong>Admin:</strong> admin@oceanus.com / password</p>
+                  <p><strong>Researcher:</strong> researcher@oceanus.com / password</p>
+                  <p><strong>Policy User:</strong> policy@oceanus.com / password</p>
+                  <p><strong>Guest:</strong> guest@oceanus.com / password</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
